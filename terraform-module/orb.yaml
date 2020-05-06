@@ -1,0 +1,18 @@
+version: 2.1
+description: test terraform modules
+
+jobs:
+  fmt:
+    docker:
+      - image: hashicorp/terraform:latest
+    steps:
+      - checkout
+      - run:
+          command: terraform fmt -diff -check
+  tflint:
+    docker:
+      - image: wata727/tflint
+    steps:
+      - checkout
+      - run:
+          command: tflint
